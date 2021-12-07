@@ -37,7 +37,7 @@ passport.deserializeUser(async (id, cb) => {
             cb(null, user)
         }
     } catch (err) {
-        console.log('---- Yo... There is an error ----');
+        console.log('---- There is an error ----');
         console.log(err);
     }
 });
