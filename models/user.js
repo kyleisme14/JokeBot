@@ -41,7 +41,9 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Password must be between 8 and 99 characters'
         }
       }
-    }
+    },
+    bio: DataTypes.STRING,
+    fav_joke: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',
