@@ -18,14 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     bot_id: DataTypes.INTEGER,
     robot: DataTypes.BOOLEAN,
     votes: DataTypes.INTEGER,
-    Joke_text: {
-      type: DataTypes.STRING,
-      validate: {
-        isNull: {
-          msg: 'no joke'
-        }
-      }
-    },
+    Joke_text: DataTypes.STRING,
     funny: DataTypes.INTEGER
   }, {
     sequelize,

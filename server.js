@@ -52,15 +52,14 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { id, name, email, bio });
 });
 
-app.get('/joke', (req, res) => {
-  res.render('joke', { joke });
-});
+
 app.get('/bot', (req, res) => {
   res.render('bot', { bot });
 });
 
 // controllers
 app.use('/auth', require('./controllers/auth'));
+app.use('/joke', require('./controllers/joke'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
