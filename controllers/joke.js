@@ -10,23 +10,49 @@ const faker = require('faker');
 
 
 router.get('/', async (req, res) => {
-  let firstName = faker.name.firstName();
-  let image = faker.image.abstract()
-  let lastName = faker.name.lastName();
+  //get Jokes
+  Joke.findAll()
+  .then(function(jokeList) {
+    console.log('FOUND:', jokeList);
+    // res.json({ albums: albumList });
+    // Joke = Joke.toJSON();
 
-  let joke = "bartender fart"  
-
-
-
-  res.render('joke', {
-       haha:joke,
-       background: image,
-       joke1: "aha",
-       newJoke: firstName + " " + lastName + 
-       " died."
-     })
- 
+    res.render('joke', {
+      'jokeList':jokeList,
+      Joke_text: "haha"
+    })
+})
+.catch(function(err) {
+    console.log('ERROR', err);
+    res.json({ message: 'Error occured, please try again....'});
+  });
 });
+
+
+//   let firstName = faker.name.firstName();
+//   let image = faker.image.abstract()
+//   let lastName = faker.name.lastName();
+
+//   let joke = "bartender fart";  
+//   let newWord = "apple"; // miriam webster api random word
+//   let nounsPerson = "Surfer"
+//   let nounDrink = "cup of seawater"
+
+
+
+//   res.render('joke', {
+       
+//        
+//        background: image,
+//        newWord : newWord,
+//        newJoke: firstName + " " + lastName + 
+//        " died. We will all miss" + firstName + " " + lastName,
+//        bestJoke: "A " + nounsPerson + " walks into a bar. Says to the bartender, I’ll have a " + nounDrink + 
+//        ". Bartender says,  last time I serve " + nounsPerson + "s!"
+       
+//      })
+ 
+// });
 
 // router.post
 //   Joke.create()

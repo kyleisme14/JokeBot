@@ -1,7 +1,7 @@
 const {
-    bot,
+    Bot,
     Joke,
-    user
+    User
 } = require("./models");
 
 
@@ -9,7 +9,7 @@ const {
 Joke.create({
     name: 'first attempts',
     bot_id: null,
-    Joke_text: "a rabbi, a priest and an imam walk into a bar. They all order water."
+    Joke_text: "The future, the present, and the past walk into a bar. Things got a little tense."
 })
 .then(function(newJoke){
     console.log('NEW Joke', newJoke.toJSON());
@@ -17,3 +17,6 @@ Joke.create({
 .catch(function(error) {
     console.log('ERROR', error);
 })
+
+
+// bot createç

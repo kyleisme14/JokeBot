@@ -5,17 +5,29 @@
 </head>
 
 <body>
-<h1>joke page</h1>
-<h4><%= joke1%></h4>
-<h4><%= haha%></h4>
-<h1><%= newJoke %></h1>
-<h3>FUNNY JOKE HAHA</h3>
+
+    <%= Joke_text %>
+
 
 <button type="button">random joke</button>
-<img src=' <%= background %>' >
+
 
 
 </body>
+
+<script>   
+
+    let button = document.querySelector("button");
+    let h3 = document.querySelector("h3");
+    button.onclick = function() {
+        h3.textContent = "bleepbloop."
+        };
+        // save 
+        // to sql
+        // then refresh
+        
+        </script>
+    
 
 <!-- <script>   
 let button = button
