@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require("../config/ppConfig");
 
-const { Joke } = require('../models');
+const { Joke, Bot } = require('../models');
 
 const faker = require('faker');
 
@@ -69,7 +69,7 @@ router.get('/joke/:id', function(req, res) {
   .then(function(joke) {
       if (joke) {
           joke = Joke.toJSON();
-          res.render('jokes/edit', { joke });
+          res.render('joke', { joke });
       } else {
           console.log('This joke does not exist');
           // render a 404 page
@@ -106,6 +106,122 @@ router.get('/:id', function(req, res) {
       console.log('ERROR', error);
   });
 });
+
+router.get('jokes/new', function(req, res) {
+  res.render('/new', { Joke,
+    'jokeList':jokeList,
+    Joke_text: "haha"})});
+
+router.get('/edit', function(req, res) {
+  res.render('jokes/edit', {
+    'jokeList':jokeList,
+    Joke_text: "haha" 
+  })});
+
+// GET to Edit page
+router.get('edit/:id', function(req, res) {
+  let jokeIndex = Number(req.params.id);
+  Joke.findByPk(jokeIndex)
+  .then(function(joke) {
+      if (joke) {
+          joke = joke.toJSON();
+          res.render('/edit', { Joke });
+      } else {
+          console.log('This Joke does not exist');
+          // render a 404 page
+          res.render('404', { message: 'Joke does not exist' });
+      }
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+  });
+  
+})
+
+
+router.get('/:id', function(req, res) {
+  console.log('PARAMS', req.params);
+  let jokeIndex = Number(req.params.id);
+  console.log('IS THIS A NUMBER?', jokeIndex);
+  Joke.findByPk(jokeIndex)
+  .then(function(joke) {
+      if (joke) {
+          joke = joke.toJSON();
+          console.log('IS THIS A Joke?', joke);
+          res.render('joke/show', { joke });
+      } else {
+          console.log('This album does not exist');
+          // render a 404 page
+          res.render('404', { message: 'Album does not exist' });
+      }
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+  });
+});
+
+/**
+* POST ROUTES
+* */ 
+
+router.post('jokes/new', function(req, res) {
+  console.log('SUBMITTED FORM', req.body);
+  Joke.create({
+      name: req.body.name,
+      Joke_text: req.body.Joke_text,
+      id: Number(req.body.id),
+  })
+  .then(function(newJoke) {
+      console.log('NEW Joke', newJoke.toJSON());
+      newJoke = newJoke.toJSON();
+      res.redirect(`/jokes/${newJoke.id}`);
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+      res.render('404', { message: 'Joke was not added please try again...' });
+  });
+  // res.redirect()
+});
+/**
+* EDIT
+* */ 
+router.put('/:id', function(req, res) {
+  console.log('EDIT FORM DATA THAT WAS SUBMITTED', req.body);
+  console.log('HERE IS THE ID', req.params.id);
+  let jokeIndex = Number(req.params.id);
+  Joke.update({
+      title: req.body.title,
+      length: Number(req.body.length),
+      tracks: Number(req.body.tracks),
+      year: Number(req.body.year)
+  }, { where: { id: jokeIndex } })
+  .then(function(response) {
+      console.log('AFTER UPDATE', response);
+      res.redirect(`/jokes/${jokeIndex}`);
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+      res.render('404', { message: 'Update was not successful. Please try again.'})
+  });
+});
+
+/**
+* DELETE
+* */ 
+router.delete('/:id', function(req, res) {
+  console.log('ID HERE', req.params.id);
+  let albumIndex = Number(req.params.id);
+  Joke.destroy({ where: { id: jokeIndex } })
+  .then(function(response) {
+      console.log('joke DELETED', response);
+      res.redirect('/jokes');
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+      res.render('404', { message: 'joke was not deleted, please try again...'});
+  })
+});
+
 
 //   let firstName = faker.name.firstName();
 //   let image = faker.image.abstract()

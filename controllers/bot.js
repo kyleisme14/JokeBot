@@ -295,63 +295,6 @@ router.get('/', async (req, res) => {
 });
 });
 
-/**
- * POST ROUTES
- * */ 
 
- router.post('/', function(req, res) {
-    console.log('SUBMITTED FORM', req.body);
-    Joke.create({
-        name: req.body.name,
-        Joke_text: Number(req.body.Joke_text),
-    })
-    .then(function(newJoke) {
-        console.log('NEW Joke', newJoke.toJSON());
-        newJoke = newJoke.toJSON();
-        res.redirect(`/jokes/${newJoke.id}`);
-    })
-    .catch(function(error) {
-        console.log('ERROR', error);
-        res.render('404', { message: 'joke was not added please try again...' });
-    });
-    // res.redirect()
-});
-/**
- * EDIT
- * */ 
-router.put('/:id', function(req, res) {
-    console.log('EDIT FORM DATA THAT WAS SUBMITTED', req.body);
-    console.log('HERE IS THE ID', req.params.id);
-    let jokeIndex = Number(req.params.id);
-    Joke.update({
-        name: req.body.name,
-        Joke_text: Number(req.body.Joke_text)
-    }, { where: { id: jokeIndex } })
-    .then(function(response) {
-        console.log('AFTER UPDATE', response);
-        res.redirect(`/jokes/${jokeIndex}`);
-    })
-    .catch(function(error) {
-        console.log('ERROR', error);
-        res.render('404', { message: 'Update was not successful. Please try again.'})
-    });
-});
-
-/**
- * DELETE
- * */ 
-router.delete('/:id', function(req, res) {
-    console.log('ID HERE', req.params.id);
-    let jokeIndex = Number(req.params.id);
-    Joke.destroy({ where: { id: jokeIndex } })
-    .then(function(response) {
-        console.log('Joke DELETED', response);
-        res.redirect('/jokes');
-    })
-    .catch(function(error) {
-        console.log('ERROR', error);
-        res.render('404', { message: 'Joke was not deleted, please try again...'});
-    })
-});
 
 module.exports = router;

@@ -56,6 +56,8 @@ app.use('/auth', require('./controllers/auth'));
 app.use('/joke', require('./controllers/joke'));
 app.use('/', require('./controllers/homepage'));
 app.use('/bot', require('./controllers/bot'));
+app.use('/jokes/edit/:id', require('./controllers/joke'));
+app.use('/jokes/new', require('./controllers/joke'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
