@@ -4,13 +4,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 
+<body style="background-color: pink;">
+    <h3 style="text-align: center;">jokes</h3>
+
+    <title>joke</title>
+</head>
 <body>
-    <h3>jokes</h3>
-    <%= Joke_text %>
-    <%= jokeList %>
- 
+    <a href='/'>View All Jokes</a>
 
+    <h1><%= joke.Joke_text %></h1>
+    <h2><%= joke.votes %> </h2>
 
+</body>
+<button style="color:green" type="button">FUNNY!</button>
+<button style="color:red" type="button">Bad Joke...</button>
 <button type="button">random joke</button>
 
 

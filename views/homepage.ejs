@@ -1,16 +1,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="homepage.css">
 </head>
 
-<body>
-    <h3>jokes</h3>
+<body style="background-color: pink;">
+    <h3 style="text-align: center;">jokes</h3>
     
     <% for( let index = 0; index < jokeList.length; index++ ) { %>
         <% let a = jokeList[index]; %> 
         <% a = a.toJSON() %>
-        <p> <%= a.Joke_text %>  </p>
+        <div style="text-align: center;">  
+        <br><a style="text-decoration:none" href="/joke/<%= a.id %>">
+            <%= a.Joke_text %> </a>
+</div>
     <% } %>
     
     }

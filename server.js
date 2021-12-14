@@ -51,14 +51,11 @@ app.get('/profile', isLoggedIn, (req, res) => {
 });
 
 
-app.get('/bot', (req, res) => {
-  res.render('bot', { bot });
-});
-
 // controllers
 app.use('/auth', require('./controllers/auth'));
 app.use('/joke', require('./controllers/joke'));
 app.use('/', require('./controllers/homepage'));
+app.use('/bot', require('./controllers/bot'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {

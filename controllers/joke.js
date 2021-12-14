@@ -6,13 +6,14 @@ const { Joke } = require('../models');
 
 const faker = require('faker');
 
+//GET to Joke page
 
 router.get('/', async (req, res) => {
   //get Jokes
   Joke.findAll()
   .then(function(jokeList) {
     console.log('FOUND:', jokeList);
-    // res.json({ albums: albumList });
+    // res.json({ jokes: jokeList });
     // Joke = Joke.toJSON();
 
     res.render('joke', {
@@ -26,6 +27,51 @@ router.get('/', async (req, res) => {
   });
 });
 
+// Get to each joke page
+
+router.get('/joke/:id', function(req, res) {
+  let jokeList = Number(req.params.id);
+  Joke.findByPk(jokeList)
+  .then(function(joke) {
+      if (joke) {
+          joke = Joke.toJSON();
+          res.render('jokes/edit', { joke });
+      } else {
+          console.log('This joke does not exist');
+          // render a 404 page
+          res.render('404', { message: 'joke does not exist' });
+      }
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+  });
+  
+})
+
+
+router.get('/:id', function(req, res) {
+  console.log('PARAMS', req.params);
+  let jokeList = Number(req.params.id);
+  console.log('IS THIS A NUMBER?', jokeList);
+  Joke.findByPk(jokeList)
+  .then(function(joke) {
+      if (joke) {
+          joke = joke.toJSON();
+          console.log('IS THIS A joke?', joke);
+          res.render('joke', { joke,
+            jokeList:jokeList,
+
+           });
+      } else {
+          console.log('This joke does not exist');
+          // render a 404 page
+          res.render('404', { message: 'joke does not exist' });
+      }
+  })
+  .catch(function(error) {
+      console.log('ERROR', error);
+  });
+});
 
 //   let firstName = faker.name.firstName();
 //   let image = faker.image.abstract()

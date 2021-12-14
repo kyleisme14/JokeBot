@@ -1,18 +1,23 @@
 
 
-<h1>bot page</h1>
-<button  type="button">new joke</button>
-<!-- onclick="randomJoke()" -->
-<h4 class="joke">joke</h4>
+<title>bot page</title>
+
+<div style="position: fixed;top:35%;left: 40%;">
+<button type="button" href="">generate new joke</button>
+<button type="button" href="">submit</button>
+</div>
 
 
-<script src="/views/JokeBot1.js">
-   
-   let joke = document.querySelector("h4").textContent;
-   joke.textContent = "How many?"
+<h3 style="text-align:center;"><%= joketext %></h3>
+
+
+<script>
+      let button = document.querySelector("button")[0];
+      let button1 = document.querySelector("button")[1];
+
+
+      let h3 = document.querySelector("h3");
+    button.onclick = function() {
+        h3.textContent = "bleepbloop."
+        };
 </script>
-
-
-// display joke
-<h4>howdy</h4>
-

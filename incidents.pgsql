@@ -1,12 +1,19 @@
-CREATE TABLE nouns (
+CREATE TABLE place (
     id SERIAL PRIMARY KEY,
     singular TEXT,       
-    plural TEXT
 );
 
+SELECT * FROM nouns 
 INSERT INTO nouns
 (singular)
 VALUES
+
+
+
+
+
+
+
 ('company'),
 ('factory reset button'),
 ('blood rage'),

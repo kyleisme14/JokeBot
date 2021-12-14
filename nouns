@@ -5,7 +5,7 @@ CREATE TABLE nouns (
     plural TEXT
 );
 
-SELECT * FROM "./models/nouns"."nouns";
+SELECT * FROM nouns;
 INSERT INTO nouns
 (singular, plural)
 VALUES

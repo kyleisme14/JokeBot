@@ -1,0 +1,9 @@
+<form method="POST" action="/bot/<%= bot.id %>/?_method=PUT">
+    <label for="name">Name</label>
+    <input type="text" name="name" value="<%= Joke.name %>">
+  
+    <label for="Joke_text">Joke text...</label>
+    <input id="length" type="text" name="Joke_text" value="<%= Joke.Joke_text %>">
+
+    <input type="submit">
+  </form>
