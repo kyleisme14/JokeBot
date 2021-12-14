@@ -1,0 +1,25 @@
+
+CREATE TABLE nouns (
+    id SERIAL PRIMARY KEY,
+    singular TEXT,       
+    plural TEXT
+);
+
+SELECT * FROM "./models/nouns"."nouns";
+INSERT INTO nouns
+(singular, plural)
+VALUES
+('company', 'companies'),
+(apple, apples),
+(thing, things),
+(time),
+(way),
+(year),
+(work),
+(government),
+(day),
+(man, men),
+(world),
+(life, lives),
+(part),
+(house, houses)

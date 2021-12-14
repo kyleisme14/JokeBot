@@ -39,12 +39,10 @@ const {
   bot, 
   joke,
   user,
+  noun,
 } = require("./models");
 
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
 
 // Add this above /auth controllers
 app.get('/profile', isLoggedIn, (req, res) => {
@@ -60,6 +58,7 @@ app.get('/bot', (req, res) => {
 // controllers
 app.use('/auth', require('./controllers/auth'));
 app.use('/joke', require('./controllers/joke'));
+app.use('/', require('./controllers/homepage'));
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {

@@ -6,8 +6,6 @@ const { Joke } = require('../models');
 
 const faker = require('faker');
 
-// Refer to https://u.pgamerx.com/types for types
-
 
 router.get('/', async (req, res) => {
   //get Jokes
